@@ -1,7 +1,7 @@
 # Battery Dispatching for End Users With On-Site Renewables and Peak Demand Charges - An Approximate Dynamic Programming Approach
 *Michael E. Cholette, Lei Liu, Babak Jeddi, and Yateendra Mishra*
 
-The paper can be found [here](https://ieeexplore.ieee.org/abstract/document/9655264).  The accepted manuscript can be provided by emailing Michael E. Cholette at the email address provided for the corresponding author.
+The paper can be found [here](https://ieeexplore.ieee.org/abstract/document/9655264).  A link to the accepted manuscript will be provided shortly. Alternatively, you may request a copy now emailing Michael E. Cholette at the email address provided for the corresponding author at the IEEE *Xplore* link provided.
 
 ## Summary
 - The paper describes a new method to reduce the electricity bill of an end user (e.g. residential customer), which includes a peak demand charge (i.e. the maximum demand over the billing period)

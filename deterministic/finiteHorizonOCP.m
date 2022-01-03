@@ -7,7 +7,7 @@ Nd = sysb.Nd; % deterministic disturbance dimension
 Nw = sysb.Nw; % noise dimension
 Ntraj = size(W,2); % number of trajectories
 x0 = reshape(sysb.x0,numel(sysb.x0),1);
-x0 = x0(1:Ns);
+x0 = x0(1:Ns); % sysb.x0 = x(k0) set outside
 
 % extract system matrices from overall matrices
 k1 = k0+K;
@@ -24,17 +24,9 @@ indDist = (k0-1)*Nd+1:k1*Nd;
 indNoise = (k0-1)*Nw+1:k1*Nw;
 Ab = sysb.Ab(indStates,:);
 Ab = [eye(Ns);Ab(1:end-Ns,:)];
-
 Bb = sysb.Bb(indStates,indInputs);
-% Bb = [zeros(Ns,size(Bb,2));Bb(1:end-Ns,:)];
-% Bb(:,end) = zeros(size(Bb,1),Ni);
-
 Fb = sysb.Fb(indStates,indDist);
-% Fb = [zeros(Ns,size(Fb,2));Fb(1:end-Ns,:)];
-% Fb(:,end) = zeros(size(Fb,1),Nd);
 Gb = sysb.Gb(indStates,indNoise);
-% Gb = [zeros(Ns,size(Gb,2));Gb(1:end-Ns,:)];
-% Gb(:,end) = zeros(size(Gb,1),Ni);
 
 % output matrices
 Cb = sysb.Cb(indOutput,indStates);
@@ -50,7 +42,6 @@ XU = repmat(sysb.stateUpperLimits,[K+1,Ntraj]);
 XL = repmat(sysb.stateLowerLimits,[K+1,Ntraj]);
 UU = repmat(sysb.controlUpperLimits,[K+1,1]);
 UL = repmat(sysb.controlLowerLimits,[K+1,1]);
-% % Rb = makeBlock(sysb.alph,N+1);
 Rd = sysb.damageCost*ones(1,K+1);
 Re = sysb.energyCost*ones(1,K+1);
 
@@ -90,17 +81,4 @@ X = Ab*x0+Bb*U+Fb*D+Gb*W;
 Y = MAT*U+b;
 Y = reshape(Y,[1,K+1,Ntraj]);
 X = reshape(X,[Ns,K+1,Ntraj]);
-
-% XP = reshape(XP,[Ns,N+1,Ntraj]);
 % cost = cvx_optval;
-
-% compute stage costs
-% cost(ii) = sys.gamma^(ii-1)*( sys.damageCost*norm(uk) + sys.energyCost*pos(uk) + ...
-%         sys.peakCost* ( max( [Y(ii),X(end,ii)]) - X(end,ii) ));
-
-% M = cummax([recordedPeak*ones(1,Ntraj);Y]);
-% % XP = [XP;M(1:end-1)'];
-% costComponents(1) = Re/Ntraj*sum(pos(Y),'all'); % average energy cost
-% costComponents(2) = Rd*abs(Db*U); % damage
-% costComponents(3) = sysb.peakCost/Ntraj*sum(max([repmat(MAT*u,1,Ntraj)+b;repmat(recordedPeak,1,Ntraj)],[],2)); % sysb.peakCost*norm([Y;recordedPeak],inf); % peak cost
-% stageCost = (sysb.peakCost*diff(M)+Rd'.*abs(Db*U) + Re'.*pos(Y))';

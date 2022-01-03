@@ -41,7 +41,7 @@ for ii=1:N-1
     recordedPeak = X(end,ii);
     
     % finite horizon OCP 
-    sysb.x0 = xk;
+    sysb.x0 = xk; % set initial condition to current state
     LEN = min([N-ii-1,NH]);
     D = dk(ii:ii+LEN);   
     [Yp,Xp,Up] = finiteHorizonOCP(sysb,ii,D,Wsa(ii:ii+LEN,:),...
@@ -108,4 +108,3 @@ for ii=1:N-1
     end
 end
 
-% cost(N+1) = Vf(X(:,N+1));
