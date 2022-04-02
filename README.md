@@ -40,7 +40,7 @@ Note that depending on the parameter values, this script may take some time to r
 ### Backward induction with a lookup table
 The lookup table is implemented in the function `lookup_table/backwardDP_Lookup_PAR1`, which only works when the demand model is PAR(1). Again, the easiest way to run this is to use `backwardDP_Lookup_top` script, which has guidance on the selection of the parameters. 
 
-There is a more general lookup table function that will work for higher-order PAR models, however it is much slower since it must use `mvncdf` to compte the state probabilities (this can be seen in the verification script mentioned below). Thus, `lookup_table/backwardDP_Lookup_PAR1` was used for the paper to provide a fair comparison with the RBF VFA approach.
+There is a more general lookup table function that will work for higher-order PAR models, however it is much slower since it must use `mvncdf` to compute the state probabilities (this can be seen in the verification script mentioned below). Thus, `lookup_table/backwardDP_Lookup_PAR1` was used for the paper to provide a fair comparison with the RBF VFA approach.
 
 ## Verification of analytical expectations
 The analytical expectations in the paper were verified using Monte Carlo simulations. 
