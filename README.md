@@ -1,7 +1,7 @@
 # Battery Dispatching for End Users With On-Site Renewables and Peak Demand Charges - An Approximate Dynamic Programming Approach
 *Michael E. Cholette, Lei Liu, Babak Jeddi, and Yateendra Mishra*
 
-The paper can be found [here](https://ieeexplore.ieee.org/abstract/document/9655264).  A link to the accepted manuscript will be provided shortly. Alternatively, you may request a copy now emailing Michael E. Cholette at the email address provided for the corresponding author at the IEEE *Xplore* link provided.
+The paper can be found [here](https://ieeexplore.ieee.org/abstract/document/9655264) and the accepted manuscript can be found [here](https://eprints.qut.edu.au/227233/). Alternatively, you may request a copy by emailing Michael E. Cholette at the email address provided for the corresponding author at the IEEE *Xplore* link provided.
 
 ## Summary
 - The paper describes a new method to reduce the electricity bill of an end user (e.g. residential customer), which includes a peak demand charge (i.e. the maximum demand over the billing period)
@@ -40,7 +40,7 @@ Note that depending on the parameter values, this script may take some time to r
 ### Backward induction with a lookup table
 The lookup table is implemented in the function `lookup_table/backwardDP_Lookup_PAR1`, which only works when the demand model is PAR(1). Again, the easiest way to run this is to use `backwardDP_Lookup_top` script, which has guidance on the selection of the parameters. 
 
-There is a more general lookup table function that will work for higher-order PAR models, however it is much slower since it must use `mvncdf` to compte the state probabilities (this can be seen in the verification script mentioned below). Thus, `lookup_table/backwardDP_Lookup_PAR1` was used for the paper to provide a fair comparison with the RBF VFA approach.
+There is a more general lookup table function that will work for higher-order PAR models, however it is much slower since it must use `mvncdf` to compute the state probabilities (this can be seen in the verification script mentioned below). Thus, `lookup_table/backwardDP_Lookup_PAR1` was used for the paper to provide a fair comparison with the RBF VFA approach.
 
 ## Verification of analytical expectations
 The analytical expectations in the paper were verified using Monte Carlo simulations. 
