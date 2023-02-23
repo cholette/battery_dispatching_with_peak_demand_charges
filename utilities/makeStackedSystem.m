@@ -41,7 +41,10 @@ for k = 1:N
     sigk(k) = sys.Hk(:,:,k)*sys.Swk(:,:,k)*sys.Hk(:,:,k)' + sys.Svk(:,:,k);
     
     rows = (k*Ns+1):(k+1)*Ns;
-    cols = ((k-1)*Ni+1):k*Ni;
+    colsAB = ((k-1)*Ni+1):k*Ni;
+    colsAF = ((k-1)*Nd+1):k*Nd;
+    colsAG = ((k-1)*Nw+1):k*Nw;
+
     Ak = sys.Ak(:,:,k);
     
     % multiply A through input matrices
@@ -61,9 +64,9 @@ for k = 1:N
     end
     
     % last columns for inputs/state
-    AB(:,cols) = sys.Bk(:,:,k);
-    AF(:,cols) = sys.Fk(:,:,k);
-    AG(:,cols) = sys.Gk(:,:,k);
+    AB(:,colsAB) = sys.Bk(:,:,k);
+    AF(:,colsAF) = sys.Fk(:,:,k);
+    AG(:,colsAG) = sys.Gk(:,:,k);
     AA = Ak*AA;
     
     Bb(rows,:) = AB;

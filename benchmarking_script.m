@@ -7,7 +7,7 @@ addpath demand_model utilities rbfVFA deterministic lookup_table
 rng('shuffle')
 
 % Number of workers for parfor loop. 
-NW = 6; 
+NW = 1; 
 hpc = false; % true if you want to use the special HPC configuration below
 saveResults = false; % save results as a .mat file? Overwritten to "true" if hpc == true
 
